@@ -53,28 +53,47 @@ def count_words(file_name):
 
         already_counted = True
 
-    print(final_word_list)
+   # print(final_word_list)
+    return final_word_list
 
 def get_file_list():
     file_list = []
-    print("test")
-    inp = ""
-    while inp != "stop":
-        inp = input("Type the name of the file you want to add to the list or type stop to end the list ")
-        if inp != "stop":
-            file_list.append(inp)
+    user_input = ""
+    while user_input != "stop":
+        user_input = input("Type the name of the file you want to add to the list or type stop to end the list ")
+        if user_input != "stop":
+            file_list.append(user_input)
 
     return file_list
 
+def combine_lists(current_list, final_list):
+    iterator = 0;
+    for item in current_list:
+        #print(item)
+        for final_item in final_list:
+            print(final_item)
+            if item[0] == final_item[0]:
+                #final_item[1] = final_item[1] + item[1]
+                #final_list[iterator][1] = final_item[1] + item[1]
+                tempNum = final_item[1] + item[1]
+                break
+        else:
+            final_list.append(item)
+        iterator = iterator + 1
+
+    return final_list
+
 def main():
-    print("test")
-    #file_list = ['text2.txt', 'text.txt', 'text3.txt']
+    final_list = []
     file_list = get_file_list()
 
     for file in file_list:
         print(file)
-        count_words(file) # change later
-        print()
+        final_list = combine_lists(count_words(file), final_list)
+        print(final_list)
+    # final_list = count_words('text3.txt') # change later
+    # print("testign line change")
+    # final_list = combine_lists(count_words('text.txt'), final_list)
 
 #if __name__ == '_main_':
 main()
